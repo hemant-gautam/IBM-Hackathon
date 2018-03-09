@@ -1,47 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import json
 from os.path import join, dirname
-import subprocess
-from subprocess import PIPE, Popen
 
-from django.conf import settings
-from dotenv import load_dotenv
-from watson_developer_cloud import SpeechToTextV1 as SpeechToText
-from pydub import AudioSegment
-
-# from speech_sentiment_python.recorder import Recorder
-
-from watson_developer_cloud import ToneAnalyzerV1Experimental as ToneAnalyser
 import requests
+from django.shortcuts import render
 from googletrans import Translator
+from django.conf import settings
 
-from django.core.files.storage import FileSystemStorage
+from .recorder import Recorder
+from watson_developer_cloud import SpeechToTextV1 as SpeechToText
 
-
-from django.shortcuts import render, redirect
-from django.shortcuts import render_to_response
-from django.http import HttpResponse
-from django.template import RequestContext
-from .models import Document, mediau
-from .forms import DocumentForm
 
 def home(request):
 
     return render(request, 'base.html')
 
 def convert_file(request):
-    print("entered")
-    file = request.POST.get('abc', False)
+    hide = request.POST['hide']
+    print(type(hide))
+    if int(hide) == 1:
+        recorder = Recorder("speech.wav")
+        recorder.record_to_file()
+        print("Transcribing audio....\n")
+        result = transcribe_audio('speech.wav')
+    else:
+        result = transcribe_audio_file(settings.MEDIA_ROOT+"\\documents\\audio-file.flac")
+    # file = request.POST.get('abc', False)
     # uploading the file is required
-    print("entered2")
+    # print("entered2")
     # form = DocumentForm(request.POST, request.FILES)
     #
     # newdoc = Document(docfile = request.FILES.get('file'))
     # newdoc.save()
-    if request.method == 'POST' and request.FILES['abc']:
-        myfile = request.FILES['abc']
+    # if request.method == 'POST' and request.FILES['abc']:
+    #     myfile = request.FILES['abc']
         # a, file_extension = os.path.splitext(request.FILES['abc'].name)
         # print("a","ASDADA",file_extension)
         # cmd="mkdir "+settings.MEDIA_ROOT +'\\'+a
@@ -49,16 +42,16 @@ def convert_file(request):
         # result = Popen(cmd, shell=True, stdout=PIPE).stdout.read()
         # if len(result)>0:
         #     raise Exception(result)
-
-        location=settings.MEDIA_ROOT+"\\documents"
-        base_url=settings.MEDIA_URL+"/documents"
-        print(myfile)
-        fs = FileSystemStorage(location,base_url)
-        file_name = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(file_name)
-        fileurl=mediau(url=uploaded_file_url,name="a")
-        fileurl.save()
-        print("success")
+        #
+        # location=settings.MEDIA_ROOT+"\\documents"
+        # base_url=settings.MEDIA_URL+"/documents"
+        # print(myfile)
+        # fs = FileSystemStorage(location,base_url)
+        # file_name = fs.save(myfile.name, myfile)
+        # uploaded_file_url = fs.url(file_name)
+        # fileurl=mediau(url=uploaded_file_url,name="a")
+        # fileurl.save()
+        # print("success")
 
     # Load documents for the list page
     # documents = Document.objects.all()
@@ -71,8 +64,8 @@ def convert_file(request):
     # )
 
     # after uploading the file
-    result = transcribe_audio(settings.MEDIA_ROOT+"\\documents\\audio-file.flac")
-
+    # result = transcribe_audio(settings.MEDIA_ROOT+"\\documents\\audio-file.flac")
+    #result = transcribe_audio()
     print("entered5")
 
     text = result['results'][0]['alternatives'][0]['transcript']
@@ -105,7 +98,7 @@ def convert_file(request):
          'tones':tones,
          'category_name':category_name
     }
-    return render(request, 'home.html', context)
+    return render(request, 'base.html', context)
 
 
 def transcribe_audio(path_to_audio_file):
@@ -113,8 +106,22 @@ def transcribe_audio(path_to_audio_file):
     password = "Ypj577gNJvPi"
     speech_to_text = SpeechToText(username=username,password=password)
 
-    with open(join(dirname(__file__), path_to_audio_file), 'rb') as audio_file:
+    with open(path_to_audio_file, 'rb') as audio_file:
+        return speech_to_text.recognize(audio_file,content_type='audio/wav')
+
+
+
+def transcribe_audio_file(path_to_audio_file):
+    username = "b6edc1f8-d2c3-4aaf-97d3-d16dd0ad1d61"
+    password = "Ypj577gNJvPi"
+    speech_to_text = SpeechToText(username=username,password=password)
+
+    with open(path_to_audio_file, 'rb') as audio_file:
         return speech_to_text.recognize(audio_file,content_type='audio/flac')
+
+
+
+
 
 def analyze_tone(text):
     username = '6de40222-d8a8-44be-8300-b9d5c022a6bb'

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Speech To Text and Sentiment Analysis</h1><br>
+    <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="abc"><br>
+        <button type="submit">Convert</button>
+    </form>
+
+    <br><br>
+    <p>{{text}}</p>
+    <p>{{translated_text_hi.text}}</p>
+    <p>{{translated_text_ta.text}}</p>
+    <p>{{translated_text_te.text}}</p>
+    <p>{{translated_text_kn.text}}</p>
+<br>{{category_name}}<br>
+<br>
+{% for t in tones %}
+    {{t.tone_name}} --- {{t.score}}<br>
+{% endfor %}
+
+</body>
+</html>

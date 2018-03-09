@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hackathon</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--
+
+Template 2075 Digital Team
+
+http://www.tooplate.com/view/2075-digital-team
+
+-->
+{% load staticfiles %}    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/et-line-font.css' %}">
+    <link rel="stylesheet" href="{% static  'css/nivo-lightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nivo_themes/default/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+{% block css %}
+    
+    <style>
+        /*Body Styling */
+        
+        body {
+            font-family: 'Open Sans', San-Serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1 {
+            margin-top: 80px;
+            font-weight: bold;
+        }
+        
+        p {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        /* Boostrap Buttons Styling */
+        
+        .btn-default {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(108, 88, 179, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(108, 89, 179, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-default:hover {
+            color: #FFF;
+            background: rgba(108, 88, 179, 0.75);
+            border: 2px solid rgba(108, 89, 179, 0.75);
+        }
+        
+        .btn-primary {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(58, 133, 191, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(58, 133, 191, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-primary:hover {
+            color: #FFF;
+            background: rgba(58, 133, 191, 0.75);
+            border: 2px solid rgba(58, 133, 191, 0.75);
+        }
+        
+        .btn-success {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(103, 192, 103, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(103, 192, 103, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-success:hover {
+            color: #FFF;
+            background: rgb(103, 192, 103, 0.75);
+            border: 2px solid rgb(103, 192, 103, 0.75);
+        }
+        
+        .btn-info {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(91, 192, 222, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(91, 192, 222, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-info:hover {
+            color: #FFF;
+            background: rgba(91, 192, 222, 0.75);
+            border: 2px solid rgba(91, 192, 222, 0.75);
+        }
+        
+        .btn-warning {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(240, 173, 78, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(240, 173, 78, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-warning:hover {
+            color: #FFF;
+            background: rgb(240, 173, 78, 0.75);
+            border: 2px solid rgba(240, 173, 78, 0.75);
+        }
+        
+        .btn-danger {
+            font-family: Raleway-SemiBold;
+            font-size: 13px;
+            color: rgba(217, 83, 78, 0.75);
+            letter-spacing: 1px;
+            line-height: 15px;
+            border: 2px solid rgba(217, 83, 78, 0.75);
+            border-radius: 40px;
+            background: transparent;
+            transition: all 0.3s ease 0s;
+        }
+        
+        .btn-danger:hover {
+            color: #FFF;
+            background: rgba(217, 83, 78, 0.75);
+            border: 2px solid rgba(217, 83, 78, 0.75);
+        }
+        
+        textarea {
+            margin-top: 10px;
+            margin-left: 140px;
+            width: 500px;
+            height: 100px;
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+            border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+            border-image: none;
+            border-radius: 6px 6px 6px 6px;
+            border-style: none solid solid none;
+            border-width: medium 1px 1px medium;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+            color: #555555;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 1em;
+            line-height: 1.4em;
+            padding: 5px 8px;
+            transition: background-color 0.2s ease 0s;
+        }
+        
+        textarea:focus {
+            background: none repeat scroll 0 0 #FFFFFF;
+            outline-width: 0;
+        }
+        
+        input {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+
+    </style>
+    
+    {% endblock %}
+</head>
+    
+    {% block body %}
+
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+ <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="abc">
+     <input type="text">
+                            <input type="submit">Transcribe</input>
+                        </form>
+
+    <!-- preloader section -->
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+
+    <!-- navigation section -->
+    <section class="navbar navbar-fixed-top custom-navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+                <a href="#" class="navbar-brand">CTRL-C CTRL-V</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home" class="smoothScroll">HOME</a></li>
+                    <li><a href="#work" class="smoothScroll">CONTENT</a></li>
+                    <li><a href="#about" class="smoothScroll">METHOD</a></li>
+                    <li><a href="#team" class="smoothScroll">TRANSCRIBE</a></li>
+                    <!--
+				<li><a href="#portfolio" class="smoothScroll">PORTFOLIO</a></li>
+				<li><a href="#pricing" class="smoothScroll">PRICING</a></li>
+-->
+                    <li><a href="#contact" class="smoothScroll">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- home section -->
+    <section id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+
+                    <h1>SPEECH TO TEXT CONVERSION</h1>
+                    <hr>
+                    <!--
+				<a href="#work" class="smoothScroll btn btn-danger">What we do</a>
+				<a href="#contact" class="smoothScroll btn btn-default">Talk to us</a>
+-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- work section -->
+    <section id="work">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+                        <strong>01</strong>
+                        <h1 class="heading bold">OUR CONTENT</h1>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+                    <i class="icon-cloud medium-icon"></i>
+                    <h3>AUDIO TRANSCRIPT</h3>
+                    <hr>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.9s">
+                    <i class="icon-mobile medium-icon"></i>
+                    <h3>VIDEO TRANSCRIPT</h3>
+                    <hr>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+                    <i class="icon-laptop medium-icon"></i>
+                    <h3>TRANSCRIPT TONE ANALYZER</h3>
+                    <hr>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="1s">
+                    <i class="icon-compass medium-icon"></i>
+                    <h3>TEXT TO TEXT TRANSLATE</h3>
+                    <hr>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- about section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="section-title">
+                        <strong>02</strong>
+                        <h1 class="heading bold">OUR METHOD</h1>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <img src="{% static 'images/about-img.jpg' %}" class="img-responsive" alt="about img">
+                </div>
+                <div class="col-md-6 col-sm-12">
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="design">
+                            <p>Duis aute irure dolor in <a href="#">reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Sed id est tincidunt, iaculis nulla vel, sodales metus. Morbi interdum accumsan augue, in accumsan neque lacinia sed. Fusce cursus eu ligula ut gravida.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane active" id="design">
+                            <p>Duis aute irure dolor in <a href="#">reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Sed id est tincidunt, iaculis nulla vel, sodales metus. Morbi interdum accumsan augue, in accumsan neque lacinia sed. Fusce cursus eu ligula ut gravida.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- team section -->
+    <section id="team">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+                        <strong>03</strong>
+                        <h1 class="heading bold">TRANSCRIBE</h1>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary">RECORD</button>
+
+                    <div class="file btn btn-success btn-md">
+                        UPLOAD AUDIO:
+
+                    </div>
+                     <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="abc" />
+                            <button type="submit" class="btn btn-danger">Transcribe</button>
+                        </form>
+
+
+
+                   <div class="file btn btn-success btn-md">
+                        UPLOAD VIDEO:
+                        <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="abc" />
+                    </div>
+                            <button type="submit" class="btn btn-danger">Transcribe</button>
+                        </form>
+
+
+
+
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <textarea placeholder="TEXT TRANSCRIBED HERE" rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">{{text}}</textarea>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+
+                        <h1 class="heading bold">TRANSLATE</h1>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="btn btn-primary">HINDI </button>
+
+
+                    <button type="button" class="btn btn-success ">TAMIL</button>
+
+
+                    <button type="button" class="btn btn-info ">TELUGU</button>
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <textarea placeholder="TRANSLATED TEXT HERE" rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+
+                        <h1 class="heading bold">TONE ANALYZER</h1>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+
+                    <button type="button" class="btn btn-success btn-large ">ANALYZE TONE OF TRANSCRIBED DATA</button>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-2">
+                        <textarea placeholder="OUTPUT OF TONE ANALYSIS" rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- contact section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="section-title">
+                        <strong>06</strong>
+                        <h1 class="heading bold">CONTACT US</h1>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 contact-info">
+                    <h2 class="heading bold">CONTACT INFO</h2>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteu sunt in culpa qui officia deserunt mollit anim id.</p>
+                    <div class="col-md-6 col-sm-4">
+                        <h3><i class="icon-envelope medium-icon wow bounceIn" data-wow-delay="0.6s"></i> EMAIL</h3>
+                        <p>hello@company.com</p>
+                    </div>
+                    <div class="col-md-6 col-sm-4">
+                        <h3><i class="icon-phone medium-icon wow bounceIn" data-wow-delay="0.6s"></i> PHONES</h3>
+                        <p>010-020-0340 | 090-080-0760</p>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+  
+
+</body>
+   {% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/smoothscroll.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.min.js' %}"></script>
+    <script src="{% static 'js/nivo-lightbox.min.js' %}"></script>
+    <script src="{% static 'js/jquery.backstretch.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}
+</html>

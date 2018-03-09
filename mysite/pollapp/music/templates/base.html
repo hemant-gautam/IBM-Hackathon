@@ -205,13 +205,6 @@ http://www.tooplate.com/view/2075-digital-team
 
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
- <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input type="file" name="abc">
-     <input type="text">
-                            <input type="submit">Transcribe</input>
-                        </form>
-
     <!-- preloader section -->
     <div class="preloader">
         <div class="sk-spinner sk-spinner-circle">
@@ -274,7 +267,11 @@ http://www.tooplate.com/view/2075-digital-team
         </div>
     </section>
 
-
+    <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="abc" />
+                            <button type="submit">Transcribe</button>
+                        </form>
 
     <!-- work section -->
     <section id="work">
@@ -368,14 +365,12 @@ http://www.tooplate.com/view/2075-digital-team
 
                     <div class="file btn btn-success btn-md">
                         UPLOAD AUDIO:
-
-                    </div>
                      <form action="{% url 'convert_file' %}" method = "post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="file" name="abc" />
-                            <button type="submit" class="btn btn-danger">Transcribe</button>
+                            <input type="submit" class="btn btn-danger">Transcribe</input>
                         </form>
-
+                    </div>
 
 
                    <div class="file btn btn-success btn-md">

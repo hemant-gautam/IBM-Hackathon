@@ -24,7 +24,7 @@ def home(request):
 
 def convert_file(request):
     reload(sys)
-    sys.setdefaultencoding('utf-8')
+    #sys.setdefaultencoding('utf-8')
     hide = request.POST['hide']
     print(type(hide))
     if int(hide) == 1:
@@ -46,11 +46,17 @@ def convert_file(request):
             fileurl = mediau(url=uploaded_file_url, name=filename)
             fileurl.save()
 
-        result = transcribe_audio_file(settings.MEDIA_ROOT+"\\" + filename+"." + file_extension, file_extension)
-        # print(result)
-    # for k, v in result.items():
-    #     print(v[0])
-    text = result['results'][0]['alternatives'][0]['transcript']
+        result = transcribe_audio_file(settings.MEDIA_ROOT+"/" + filename+"." + file_extension, file_extension)
+        text = ""
+        for x in result:
+            if (x == "results"):
+                data_in = result[x]
+                for y in data_in:
+                    new_data = y['alternatives'][0]
+                    for z in new_data:
+                        if (z == "transcript"):
+                            text = text + new_data[z]
+
     print("Text: " + text + "\n")
 
     translated_text_hi = translate_to_hindi(text)

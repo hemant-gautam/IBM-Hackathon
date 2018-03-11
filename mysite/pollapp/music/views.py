@@ -26,6 +26,7 @@ def convert_file(request):
     reload(sys)
     #sys.setdefaultencoding('utf-8')
     hide = request.POST['hide']
+    text = ""
     print(type(hide))
     if int(hide) == 1:
         recorder = Recorder("speech.wav")
@@ -47,15 +48,15 @@ def convert_file(request):
             fileurl.save()
 
         result = transcribe_audio_file(settings.MEDIA_ROOT+"/" + filename+"." + file_extension, file_extension)
-        text = ""
-        for x in result:
-            if (x == "results"):
-                data_in = result[x]
-                for y in data_in:
-                    new_data = y['alternatives'][0]
-                    for z in new_data:
-                        if (z == "transcript"):
-                            text = text + new_data[z]
+
+    for x in result:
+        if (x == "results"):
+            data_in = result[x]
+            for y in data_in:
+                new_data = y['alternatives'][0]
+                for z in new_data:
+                    if (z == "transcript"):
+                        text = text + new_data[z]
 
     print("Text: " + text + "\n")
 

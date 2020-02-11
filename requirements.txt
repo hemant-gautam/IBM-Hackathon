@@ -11,7 +11,7 @@ constantly==15.1.0
 cryptography==2.1.4
 cycler==0.10.0
 dill==0.2.7.1
-Django==2.0.3
+Django==2.2.10
 ffmpy==0.2.2
 future==0.16.0
 gapic-google-cloud-datastore-v1==0.15.3
